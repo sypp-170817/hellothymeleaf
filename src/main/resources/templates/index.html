@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<h1>Index</h1>
+
+<h3>변수</h3>
+<p th:text="${hello}">EMPTY</p>
+<h3>세션 접근</h3>
+<p th:text="${session.job}">EMPTY</p>
+
+<div th:object="${session.user}">
+    <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
+    <p>Surname: <span th:text="*{lastName}">Pepper</span>.</p>
+    <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+</div>
+
+<div>
+    <p>Name: <span th:text="${session.user.firstName}">Sebastian</span>.</p>
+    <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+    <p>Nationality: <span th:text="${session.user.nationality}">Saturn</span>.</p>
+</div>
+
+<h3>오브젝트 접근</h3>
+<div>
+    <p>Name: <span th:text="${user.firstName}">Sebastian</span>.</p>
+    <p>Surname: <span th:text="${user.lastName}">Pepper</span>.</p>
+    <p>Nationality: <span th:text="${user.nationality}">Saturn</span>.</p>
+</div>
+
+<h3>숫자연산</h3>
+<p>In two years, it will be <span th:text="2013 + 2">1494</span>.</p>
+
+<h3>Boolean</h3>
+<div>
+    <p th:if="${user.isAdmin()}">true 이면 생성</p>
+</div>
+
+<h3>Text 붙이기</h3>
+<span th:text="'The name of the user is ' + ${user.firstName}"/><br>
+<span th:text="'Welcome to our application, ' + ${user.lastName} + '!'"/>
+
+<h3>참거짓</h3>
+<span th:text="${user.isAdmin() ? '관리자' : '회원'}"/><br>
+
+<h3>for 문</h3>
+<table>
+    <tr data-th-each="userObj : ${users}">
+        <td data-th-text="${userObj.firstName}">...</td>
+        <td data-th-text="${userObj.lastName}">...</td>
+    </tr>
+</table>
+
+<h3>Switch 문</h3>
+<div th:switch="${user.age}">
+    <p th:case="'10'">10 age</p>
+    <p th:case="'20'">20 age</p>
+    <p th:case="'30'">30 age</p>
+    <p th:case="*">all</p>
+</div>
+
+<h3>지역변수</h3>
+<div th:with="testText='변수입력'">
+    <p>
+        The name of the first person is <span th:text="${testText}">Julius Caesar</span>.
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+spring:
+
+  thymeleaf:
+    suffix: .html
+    cache: false
+server:
+  port: 9090
